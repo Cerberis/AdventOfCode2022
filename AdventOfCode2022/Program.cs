@@ -1,3 +1,3 @@
-﻿var runmode = RunMode.Day6Part2;
+﻿var runmode = RunMode.Day8Part2;
 
 RunModeHandler.Execute(runmode);

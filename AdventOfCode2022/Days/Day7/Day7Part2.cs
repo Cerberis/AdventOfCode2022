@@ -7,18 +7,14 @@
 
         }
 
-        protected override int CalculatePositionsFuelConsumption(int currentPosition)
+        protected override int Calculate()
         {
-            var fuelConsumed = 0;
-            foreach (var position in CrabPositions)
-            {
-               var positionDifference = GetPositionDifference(currentPosition, position);
-                for (int stepsMoved = 0; stepsMoved < positionDifference; stepsMoved++)
-                {
-                    fuelConsumed += stepsMoved +1;
-                }
-            }
-            return fuelConsumed;
+            var rootFolderSum = DataStructure.First().Size;
+            var freeSpace = FileCommands.DiskSpace - rootFolderSum;
+            var neededDiskSpace = FileCommands.RequiredDiskSpace - freeSpace;
+            var foundDirectory = DataStructure.Where(m => m.FileType == FileType.Folder && m.Size > neededDiskSpace).Min(m => m.Size);
+
+            return foundDirectory;
         }
     }
 }

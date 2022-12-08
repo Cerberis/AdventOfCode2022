@@ -6,14 +6,12 @@
         {
         }
 
-        protected override int CalculatePositionsFuelConsumption(int currentPosition)
+        protected override int Calculate()
         {
-            var fuelConsumed = 0;
-            foreach (var position in CrabPositions)
-            {
-                fuelConsumed += currentPosition > position ? currentPosition - position : position - currentPosition;
-            }
-            return fuelConsumed;
+            var folderSum = DataStructure.Where(m => m.FileType ==FileType.Folder && m.Size < 100000).Sum(m => m.Size);
+            return folderSum;
         }
+
+
     }
 }
